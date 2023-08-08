@@ -80,8 +80,12 @@ class Doorbird extends utils.Adapter {
 		if (this.config.adapterAddress) {
 			try {
 				this.server = http.createServer(async (req, res) => {
+
+					console.log('res.socket.remoteAddress:', res.socket.remoteAddress)
 					if (res.socket && res.socket.remoteAddress) {
 						const remoteAddress = res.socket.remoteAddress.replace(/^.*:/, '');
+
+						onsole.log('remoteAddress:', remoteAddress)
 						if (remoteAddress === this.config.birdip || remoteAddress === '192.168.30.47') {
 							res.writeHead(204, { 'Content-Type': 'text/plain' });
 							if (req.url == '/motion') {
