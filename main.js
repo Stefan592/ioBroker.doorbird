@@ -49,6 +49,8 @@ class Doorbird extends utils.Adapter {
         this.config.adapterAddress = '172.29.178.42';
     }
 
+
+
     /**
      * Is called when databases are connected and adapter received configuration.
      */
