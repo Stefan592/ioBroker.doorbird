@@ -45,6 +45,8 @@ class Doorbird extends utils.Adapter {
 
         this.wizard = false;
         this.wizardTimeout = null;
+
+        this.config.adapterAddress = '172.29.178.42';
     }
 
     /**
@@ -110,9 +112,9 @@ class Doorbird extends utils.Adapter {
                     }
                 });
 
-                this.server.listen(this.config.adapterport || 8081, this.config.adapterAddress, () => {
+                this.server.listen(this.config.adapterport || 8081, () => {
                     this.log.debug(
-                        `Server started on port ${this.config.adapterport || 8100} with IP ${this.config.adapterAddress}`,
+                        `Server started on port ${this.config.adapterport || 8100} and listen on all interfaces.`,
                     );
                 });
             } catch (e) {
