@@ -46,10 +46,7 @@ class Doorbird extends utils.Adapter {
         this.wizard = false;
         this.wizardTimeout = null;
 
-        this.config.adapterAddress = '172.29.178.42';
     }
-
-
 
     /**
      * Is called when databases are connected and adapter received configuration.
@@ -62,6 +59,9 @@ class Doorbird extends utils.Adapter {
     }
 
     async mainAsync() {
+
+        this.config.adapterAddress = '172.29.178.42';
+
         if (this.config.birdip && this.config.birdpw && this.config.birduser) {
             this.testBirdAsync(); // no await because code should run parallel
         }
@@ -79,7 +79,7 @@ class Doorbird extends utils.Adapter {
         if (this.config.adapterAddress) {
             try {
                 this.server = http.createServer(async (req, res) => {
-                    if (res.socket && res.socket.remoteAddress) {
+                    if (res.socket && res.socket.remoteAddress || true) {
                         const remoteAddress = res.socket.remoteAddress.replace(/^.*:/, '');
                         if (remoteAddress === this.config.birdip) {
                             res.writeHead(204, { 'Content-Type': 'text/plain' });
